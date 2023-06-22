@@ -1,0 +1,13 @@
+spring:
+  web:
+    resources:
+      add-mappings: false
+
+server:
+  error:
+    include-stacktrace: never
+    include-message: always
+  servlet:
+    encoding:
+      force: true
+  shutdown: graceful
