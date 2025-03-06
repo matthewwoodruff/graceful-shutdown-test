@@ -1,6 +1,6 @@
 # Graceful shutdown test
 
-1. Download honeycomb java agent
+1. Download the otel java agent
 ```
 curl -L https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v2.13.3/opentelemetry-javaagent.jar -o otel-agent.jar 
 ```
