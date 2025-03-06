@@ -2,20 +2,19 @@
 
 1. Download honeycomb java agent
 ```
-curl -L https://github.com/honeycombio/honeycomb-opentelemetry-java/releases/download/v1.5.1/honeycomb-opentelemetry-javaagent-1.5.1.jar -o honeycomb-agent.jar 
+curl -L https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v2.13.3/opentelemetry-javaagent.jar -o otel-agent.jar 
 ```
 2. Build app
 ```
 ./gradlew build
 ```
-3. Set environment variables
+3. Copy and set environment variables
 ```
-HONEYCOMB_API_KEY=xxx
-HONEYCOMB_DATASET=xxx
+cp template-otel.properties otel.properties
 ```
 4. Run app
 ```
-java -Dotel.javaagent.configuration-file=otel.properties -javaagent:honeycomb-agent.jar -Dservice.name=test-service -jar build/libs/graceful-shutdown-test.jar
+java -Dotel.javaagent.configuration-file=otel.properties -javaagent:otel-agent.jar -Dservice.name=test-service -jar build/libs/graceful-shutdown-test.jar
 ```
 5. Curl the wait endpoint and you should see the trace in honeycomb. It will take 10 seconds to complete.
 ```

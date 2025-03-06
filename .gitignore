@@ -44,5 +44,5 @@ opentelemetry
 *DS_Store*
 .env*
 
-honeycomb-agent.jar
 otel.properties
+*.jar

@@ -1,24 +1,30 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.12"
-    id("io.spring.dependency-management") version "1.1.0"
-    kotlin("jvm") version "1.8.20"
-    kotlin("plugin.spring") version "1.8.20"
+    id("org.springframework.boot") version "3.4.2"
+    id("io.spring.dependency-management") version "1.1.7"
+    kotlin("jvm") version "2.1.10"
+    kotlin("plugin.spring") version "2.1.10"
+    idea
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
-repositories {
-    mavenCentral()
+repositories { mavenCentral() }
+
+idea {
+    module {
+        isDownloadJavadoc = false
+        isDownloadSources = true
+    }
 }
 
 val ktlint: Configuration by configurations.creating
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-
-    implementation(platform("io.opentelemetry:opentelemetry-bom:1.27.0"))
+    implementation(platform("io.opentelemetry:opentelemetry-bom:1.47.0"))
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
     implementation("io.opentelemetry:opentelemetry-extension-kotlin")
@@ -26,9 +32,9 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict", "-opt-in=kotlin.RequiresOptIn")
-        jvmTarget = "17"
-        allWarningsAsErrors = true
+    compilerOptions {
+        freeCompilerArgs.addAll(listOf("-Xconsistent-data-class-copy-visibility", "-Xwhen-guards"))
+        jvmTarget.set(JvmTarget.JVM_21)
+        allWarningsAsErrors.set(false)
     }
 }
