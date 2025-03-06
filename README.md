@@ -15,7 +15,7 @@ HONEYCOMB_DATASET=xxx
 ```
 4. Run app
 ```
-java -javaagent:honeycomb-agent.jar -Dservice.name=test-service -jar build/libs/graceful-shutdown-test.jar
+java -Dotel.javaagent.configuration-file=otel.properties -javaagent:honeycomb-agent.jar -Dservice.name=test-service -jar build/libs/graceful-shutdown-test.jar
 ```
 5. Curl the wait endpoint and you should see the trace in honeycomb. It will take 10 seconds to complete.
 ```

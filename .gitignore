@@ -45,3 +45,4 @@ opentelemetry
 .env*
 
 honeycomb-agent.jar
+otel.properties
